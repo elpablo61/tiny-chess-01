@@ -1,6 +1,8 @@
 # tiny-chess-01
 
-[![make.fun](https://make.fun/badge.svg)](https://make.fun/bounty/tiny-chess-01)
+[![make.fun · tiny-chess-01](https://make.fun/badge/tiny-chess-01.svg)](https://make.fun/bounty/tiny-chess-01?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
+[![rank](https://make.fun/badge/tiny-chess-01/elpablo61/tiny-chess-01/rank.svg)](https://make.fun/bounty/tiny-chess-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
+[![reward](https://make.fun/badge/tiny-chess-01/elpablo61/tiny-chess-01/reward.svg)](https://make.fun/bounty/tiny-chess-01?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 A chess engine in at most 4,096 bytes of Python, built for the
@@ -28,7 +30,9 @@ the unpacked source is the engine above, nothing else.
 
 ## Build
 
-`main.py` is produced from the working source by LZMA + base85 packing.
+`main.py` is produced from the working source by the official kit
+(`makefun compress engine_src.py --out main.py` — stub makefun-compress/v1
++ LZMA).
 Verified with perft (all 5 standard positions to depth 3–4), mate-in-1/2
 tests, and local practice trials against the kit's own env server
 (best: Elo 1364 on the 6-game practice gauntlet, vs ~1365 for the
