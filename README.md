@@ -13,13 +13,14 @@ against a gauntlet of eight house engines.
 ## Engine
 
 `main.py` is the whole engine: a 0x88 board, full legal move generation
-(castling, en passant, promotion), negamax alpha-beta with iterative
-deepening to a fixed 100,000-node budget, quiescence search (captures and
-promotions, with check evasions), a transposition table, MVV-LVA move
-ordering, null-move pruning, and a formula piece-square-table evaluation
-with tapered king safety (pawn shield) and bishop-pair bonus. No clock,
-no randomness: the same position always gets the same move, so replays
-match.
+(castling, en passant, promotion), negamax PVS with iterative deepening
+to a fixed 100,000-node budget, aspiration windows at the root,
+quiescence search (captures, promotions, and check evasions), a
+transposition table, MVV-LVA + killer + history move ordering,
+null-move pruning, LMR, mate-distance scoring, and a tapered PeSTO
+evaluation (two piece-square tables per piece, phase-interpolated from
+remaining material). No clock, no randomness: the same position always
+gets the same move, so replays match.
 
 It talks to the trial env at `MAKEFUN_ENV_URL` (`POST /game`, `/move`),
 plays in UCI, and never calls a model or any other service.
@@ -33,10 +34,11 @@ the unpacked source is the engine above, nothing else.
 `main.py` is produced from the working source by the official kit
 (`makefun compress engine_src.py --out main.py` — stub makefun-compress/v1
 + LZMA).
-Verified with perft (all 5 standard positions to depth 3–4), mate-in-1/2
-tests, and local practice trials against the kit's own env server
-(best: Elo 1364 on the 6-game practice gauntlet, vs ~1365 for the
-house sunfish baseline).
+Verified with perft (6 standard positions to depth 3), a mate-in-1 test,
+self-play, and local practice trials against the kit's own env server:
+trial-0 Elo 2112 (the scorer cap), 6W/0D/0L, reproduced move-identically
+on a re-run; trial-1 and trial-2 Elo 1364 each, 3W/1D/2L; 3-trial
+average Elo 1613 (v1 scored 1364 on trial-0).
 
 ## License
 
