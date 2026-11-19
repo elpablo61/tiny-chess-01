@@ -33,12 +33,16 @@ the unpacked source is the engine above, nothing else.
 
 `main.py` is produced from the working source by the official kit
 (`makefun compress engine_src.py --out main.py` — stub makefun-compress/v1
-+ LZMA).
++ LZMA). The unpacked source, `engine_src.py`, stays in the repo folder
+(uncommitted) so the committed tree stays under the 8,192-byte cap.
+
+## Results (verified)
+
 Verified with perft (6 standard positions to depth 3), a mate-in-1 test,
 self-play, and local practice trials against the kit's own env server:
-trial-0 Elo 2112 (the scorer cap), 6W/0D/0L, reproduced move-identically
-on a re-run; trial-1 and trial-2 Elo 1364 each, 3W/1D/2L; 3-trial
-average Elo 1613 (v1 scored 1364 on trial-0).
+trial-0 Elo 2112 (the scorer cap), 6W/0D/0L — all six wins by checkmate,
+reproduced move-identically on a re-run; trial-1 and trial-2 Elo 1364 each, 3W/1D/2L; 3-trial average Elo 1613 (v1 scored
+1364 on trial-0).
 
 ## License
 
